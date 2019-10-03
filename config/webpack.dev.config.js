@@ -6,7 +6,8 @@ import config from './webpack.config';
 const cssLoader = {
     loader: 'css-loader',
     options: {
-        url: true
+        url: true,
+        sourceMap: true
     }
 };
 
@@ -17,7 +18,8 @@ const sassLoader = {
         includePaths: [
             'src/',
             'node_modules/'
-        ]
+        ],
+        sourceMap: true
     }
 };
 
