@@ -2,8 +2,8 @@
 
 ## Getting started
 
-- `git clone https://github.com/adambezemek/webpack-patternlab`
-- `cd webpack-patternlab`
+- `git clone https://github.com/XCentium/xc-component-library-seed`
+- `cd xc-component-library-seed`
 - `npm install`
 
 ## Local Development
