@@ -2,10 +2,18 @@
   "name": "xc-cli",
   "version": "1.0.0",
   "description": "Command line interface to setup the XCentium Frontend seed project",
-  "main": "index.js",
+  "main": "src/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "XCentium",
+    "XC",
+    "Sitecore"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AdamMornes/xc-component-library-seed.git"
@@ -14,5 +22,15 @@
   "bugs": {
     "url": "https://github.com/XCentium/xc-component-library-seed/issues"
   },
-  "homepage": "https://github.com/XCentium/xc-component-library-seed#readme"
+  "homepage": "https://github.com/XCentium/xc-component-library-seed#readme",
+  "dependencies": {
+    "arg": "^4.1.2",
+    "chalk": "^3.0.0",
+    "esm": "^3.2.25",
+    "execa": "^4.0.0",
+    "inquirer": "^7.0.2",
+    "listr": "^0.14.3",
+    "ncp": "^2.0.0",
+    "pkg-install": "^1.0.0"
+  }
 }
