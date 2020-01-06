@@ -1,25 +1,34 @@
 // TO USE BOOTSTRAP UNCOMMENT THESE 3 LINES
-// @import './../../node_modules/bootstrap/scss/bootstrap';
+// @import "./../../node_modules/bootstrap/scss/bootstrap";
 
 // TO USE TAILWIND UNCOMMENT THESE 3 LINES
-// @import 'tailwindcss/base';
-// @import 'tailwindcss/components';
-// @import 'tailwindcss/utilities';
+// @import "tailwindcss/base";
+// @import "tailwindcss/components";
+// @import "tailwindcss/utilities";
+
+@import "base";
 
 // PUT YOUR CLIENT CODE PARTIALS HERE:
 /*------------------------------------*\
-    #VARIABLES
+    #BASE
 \*------------------------------------*/
-@import './variables/colors';
-@import './variables/typography';
+@import "./global/fonts";
 
 /*------------------------------------*\
     #ATOMS
 \*------------------------------------*/
-@import './atoms/fonts';
+@import "./atoms/fonts";
 
 /*------------------------------------*\
-    #COMPONENTS
+    #MOLECULES
+\*------------------------------------*/
+
+/*------------------------------------*\
+    #ORGANISMS
+\*------------------------------------*/
+
+/*------------------------------------*\
+    #TEMPLATES
 \*------------------------------------*/
 
 /*------------------------------------*\
