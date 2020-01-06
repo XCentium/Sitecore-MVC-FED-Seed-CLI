@@ -2,7 +2,10 @@
   "name": "xc-cli",
   "version": "1.0.0",
   "description": "Command line interface to setup the XCentium Frontend seed project",
-  "main": "src/index.js",
+  "main": "src/cli.js",
+  "bin": {
+    "xc-cli": "bin/xc-cli"
+  },
   "publishConfig": {
     "access": "public"
   },
