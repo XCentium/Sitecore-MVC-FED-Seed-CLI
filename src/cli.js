@@ -1,4 +1,8 @@
+import parseArgs from './config/args';
+import prompts from './actions/prompts';
+
 export async function cli(args) {
-    console.log(args);
-    console.log('yo I iz a cli');
+    let options = parseArgs(args);
+    options = await prompts(options);
+    console.log(options);
 }
