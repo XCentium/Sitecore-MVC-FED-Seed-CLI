@@ -1,90 +1,18 @@
 {
-  "name": "webpack-patternlab",
-  "version": "0.0.1",
-  "description": "Webpack version of Patternlab",
+  "name": "xc-cli",
+  "version": "1.0.0",
+  "description": "Command line interface to setup the XCentium Frontend seed project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/adambezemek/webpack-patternlab"
+    "url": "git+https://github.com/AdamMornes/xc-component-library-seed.git"
   },
   "license": "(MIT OR Apache-2.0)",
-  "scripts": {
-    "start": "npm run patternlab:serve",
-    "build": "npm run patternlab:build",
-    "build:sitecore": "npm run patternlab:build && npm run copy",
-    "diagnosis": "run-s patternlab:version webpack:version patternlab:build patternlab:serve",
-    "postinstall": "node scripts/postinstall.js",
-    "patternlab:build": "webpack --mode=production --env.production",
-    "patternlab:help": "node patternlab.js help",
-    "patternlab:installplugin": "node patternlab.js installplugin",
-    "patternlab:liststarterkits": "node patternlab.js liststarterkits",
-    "patternlab:loadstarterkit": "node patternlab.js loadstarterkit",
-    "patternlab:patternsonly": "node patternlab.js patternsonly",
-    "patternlab:serve": "webpack-dev-server --mode=development --env.development",
-    "patternlab:version": "node patternlab.js version",
-    "webpack:version": "webpack --v",
-    "copy": "node scripts/copy.js"
+  "bugs": {
+    "url": "https://github.com/XCentium/xc-component-library-seed/issues"
   },
-  "babel": {
-    "plugins": [
-      "@babel/plugin-proposal-class-properties"
-    ],
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "useBuiltIns": "usage",
-          "corejs": 3
-        }
-      ]
-    ]
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.6.2",
-    "@babel/core": "^7.6.2",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/polyfill": "^7.6.0",
-    "@babel/preset-env": "^7.6.2",
-    "@babel/register": "^7.6.2",
-    "@pattern-lab/starterkit-mustache-demo": "^5.0.0",
-    "autoprefixer": "^9.6.1",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.0.3",
-    "babel-loader": "^8.0.6",
-    "browser-sync": "^2.26.7",
-    "browser-sync-webpack-plugin": "^2.2.2",
-    "copy-webpack-plugin": "^5.0.4",
-    "core-js": "^3.2.1",
-    "css-loader": "^3.2.0",
-    "eslint": "^6.5.0",
-    "eslint-loader": "^3.0.2",
-    "event-hooks-webpack-plugin": "^2.1.4",
-    "fibers": "^4.0.1",
-    "file-loader": "^4.2.0",
-    "globby": "^9.2.0",
-    "import-glob-loader": "^1.1.0",
-    "mini-css-extract-plugin": "^0.8.0",
-    "ncp": "^2.0.0",
-    "node-sass": "^4.12.0",
-    "npm-run-all": "^4.1.5",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "patternlab-node": "^2.12.0",
-    "plugin-node-tab": "^2.0.2",
-    "plugin-node-uiextension": "^1.0.0-alpha",
-    "postcss-flexbugs-fixes": "^4.1.0",
-    "postcss-loader": "^3.0.0",
-    "prettier": "1.18.2",
-    "rimraf": "^3.0.0",
-    "sass": "^1.22.12",
-    "sass-loader": "^8.0.0",
-    "style-loader": "^1.0.0",
-    "styleguidekit-assets-default": "^3.5.2",
-    "styleguidekit-mustache-default": "^3.1.0",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack": "^4.41.0",
-    "webpack-cli": "^3.3.9",
-    "webpack-config-utils": "^2.3.1",
-    "webpack-dev-server": "^3.8.1",
-    "webpack-fix-style-only-entries": "^0.4.0",
-    "webpack-merge": "^4.2.2"
-  }
+  "homepage": "https://github.com/XCentium/xc-component-library-seed#readme"
 }
