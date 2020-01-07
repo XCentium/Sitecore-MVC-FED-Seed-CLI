@@ -1,13 +1,11 @@
 import fs from 'fs-extra';
-import path from 'path';
-import url from 'url';
 import chalk from 'chalk';
 import Listr from 'listr';
+import paths from '../config/env';
 import { frameworks as cssFrameworks } from '../config/frameworks/css';
 import copyFiles from './copy-files';
 import initGit from './initialize-git';
-
-const currentFileUrl = url.fileURLToPath(import.meta.url);
+import checkPathIntegrity from '../utils/path-integrity';
 
 export default async function(options) {
     options = {
@@ -15,36 +13,20 @@ export default async function(options) {
         targetDirectory: process.cwd()
     };
 
-    const commonTemplateDir = path.resolve(
-        currentFileUrl,
-        '../../../templates/common'
-    );
+    // check path to common template
+    checkPathIntegrity(paths.templates.common);
 
-    try {
-        await fs.pathExists(commonTemplateDir);
-    } catch(err) {
-        console.log(err);
-        console.error('%s There was an issue copying project files. Please try again', chalk.red.bold('ERROR'));
-        process.exit(1);
-    }
-
-    let cssTemplateDir = '';
+    // parse css framework location and if it's directory exists, check directory integrity. If integrity test fails, it is assumed no framework is selected
     const cssTemplate = cssFrameworks.find(option => option.title === options.cssFramework);
-    try {
-        cssTemplateDir = path.resolve(
-            currentFileUrl,
-            '../../../templates/css',
-            cssTemplate.template
-        )
-        await fs.pathExists(cssTemplateDir);
-    } catch(err) {
-        console.log(chalk.green.bold('No CSS framework selected'));
+    const cssTemplateDir = cssTemplate && paths.templates.css[cssTemplate.template] ? paths.templates.css[cssTemplate.template] : false;
+    if(cssTemplateDir) {
+        checkPathIntegrity(cssTemplateDir, () => console.log(chalk.green.bold('No CSS framework selected')));
     }
 
     const tasks = new Listr([
         {
             title: 'Copying common project files',
-            task: () => copyFiles(commonTemplateDir, options.targetDirectory)
+            task: () => copyFiles(paths.templates.common, options.targetDirectory)
         },
         {
             title: 'Copying CSS framework project files',
