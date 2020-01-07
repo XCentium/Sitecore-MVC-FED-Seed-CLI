@@ -5,6 +5,7 @@ import { frameworks as cssFrameworks } from '../config/frameworks/css';
 import copyFiles from './copy-files';
 import initGit from './initialize-git';
 import checkPathIntegrity from '../utils/path-integrity';
+import { projectInstall } from 'pkg-install';
 
 export default async function(options) {
     options = {
@@ -23,18 +24,23 @@ export default async function(options) {
 
     const tasks = new Listr([
         {
-            title: 'Copying common project files',
+            title: 'Copy common project files',
             task: () => copyFiles(paths.templates.common, options.targetDirectory)
         },
         {
-            title: 'Copying CSS framework project files',
+            title: 'Copy CSS framework project files',
             task: () => copyFiles(cssTemplateDir, options.targetDirectory),
             skip: () => !cssTemplateDir
         },
         {
-            title: 'Initializing git',
+            title: 'Initialize git',
             task: () => initGit(options.targetDirectory),
             enabled: () => options.git
+        },
+        {
+            title: 'Install dependencies',
+            task: () => projectInstall({ cwd: options.targetDirectory }),
+            skip: () => !options.runInstall ? 'Pass --install to automatically install dependencies': undefined
         }
     ]);
 

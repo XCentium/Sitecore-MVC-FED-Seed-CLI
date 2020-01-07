@@ -3,7 +3,7 @@ import * as cssFrameworks from './frameworks/css';
 const css = {
     type: 'list',
     name: 'cssFramework',
-    message: 'Please choose a CSS Framework',
+    message: 'Choose a CSS Framework',
     choices: cssFrameworks.frameworks.map(option => option.title),
     default: cssFrameworks.defaultFramework
 }
