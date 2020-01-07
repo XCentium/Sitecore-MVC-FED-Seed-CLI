@@ -1,8 +1,8 @@
-import ncp from 'ncp';
-import { promisify } from 'util';
+import fs from 'fs-extra';
 
-const copy = promisify(ncp);
-
-export default async function(templateDirectory, targetDirectory, clobber = false) {
-    return copy(templateDirectory, targetDirectory, { clobber }).catch(err => console.log(err));
+export default async function(templateDirectory, targetDirectory) {
+    return fs.copy(templateDirectory, targetDirectory).catch(err => {
+        console.log(err);
+        process.exit(1);
+    });
 }

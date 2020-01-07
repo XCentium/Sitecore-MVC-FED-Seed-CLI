@@ -8,7 +8,7 @@ const frameworks = [
     },
     {
         title: 'Tailwind CSS',
-        template: 'tailwind-css'
+        template: 'tailwindcss'
     }
 ]
 

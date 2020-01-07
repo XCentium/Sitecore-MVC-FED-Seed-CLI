@@ -1,13 +1,11 @@
-import fs from 'fs';
+import fs from 'fs-extra';
 import path from 'path';
 import url from 'url';
 import chalk from 'chalk';
 import Listr from 'listr';
-import { promisify } from 'util';
 import { frameworks as cssFrameworks } from '../config/frameworks/css';
 import copyFiles from './copy-files';
 
-const access = promisify(fs.access);
 const currentFileUrl = url.fileURLToPath(import.meta.url);
 
 export default async function(options) {
@@ -22,7 +20,7 @@ export default async function(options) {
     );
 
     try {
-        await access(commonTemplateDir, fs.constants.R_OK);
+        await fs.pathExists(commonTemplateDir);
     } catch(err) {
         console.log(err);
         console.error('%s There was an issue copying project files. Please try again', chalk.red.bold('ERROR'));
@@ -37,7 +35,7 @@ export default async function(options) {
             '../../../templates/css',
             cssTemplate.template
         )
-        await access(cssTemplateDir, fs.constants.R_OK);
+        await fs.pathExists(cssTemplateDir);
     } catch(err) {
         console.log(chalk.green.bold('No CSS framework selected'));
     }
@@ -49,7 +47,7 @@ export default async function(options) {
         },
         {
             title: 'Copying CSS framework project files',
-            task: () => copyFiles(cssTemplateDir, options.targetDirectory, true),
+            task: () => copyFiles(cssTemplateDir, options.targetDirectory),
             skip: () => !cssTemplateDir
         }
     ]);
