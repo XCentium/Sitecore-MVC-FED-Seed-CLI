@@ -1,0 +1,3 @@
+@function aspect-ratio($width, $height) {
+    @return unquote(($height/$width * 100) + '%');
+}
