@@ -6,7 +6,9 @@ const frameworks = [
         title: 'Bootstrap 4',
         template: 'bootstrap-4',
         dependencies: {
-            "bootstrap": "^4.4.1"
+            "bootstrap": "^4.4.1",
+            "jquery": "^3.4.1",
+		    "popper.js": "^1.16.0"
         }
     },
     {

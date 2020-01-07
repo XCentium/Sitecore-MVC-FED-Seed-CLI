@@ -1,6 +1,9 @@
 /*------------------------------------*\
-    #BOOTSTRAP VARIABLES
+    #BOOTSTRAP
 \*------------------------------------*/
+@import "~bootstrap/scss/functions";
+@import "./vendors/bootstrap/variables";
+@import "~bootstrap/scss/mixins";
 
 /*------------------------------------*\
     #VARIABLES
@@ -9,18 +12,10 @@
 @import "./variables/typography";
 
 /*------------------------------------*\
-    #BOOTSTRAP FUNCTIONS
-\*------------------------------------*/
-
-/*------------------------------------*\
     #FUNCTIONS
 \*------------------------------------*/
 @import "./functions/aspect-ratio";
 @import "./functions/text-contrast";
-
-/*------------------------------------*\
-    #BOOTSTRAP MIXINS
-\*------------------------------------*/
 
 
 /*------------------------------------*\
