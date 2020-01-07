@@ -1,11 +1,13 @@
 import chalk from 'chalk';
 import Listr from 'listr';
-import paths from '../config/env';
+import paths from '../config/paths';
 import { frameworks as cssFrameworks } from '../config/frameworks/css';
 import copyFiles from './copy-files';
 import initGit from './initialize-git';
 import checkPathIntegrity from '../utils/path-integrity';
 import { projectInstall } from 'pkg-install';
+
+import injectDependency from './inject-dependency';
 
 export default async function(options) {
     options = {
@@ -30,6 +32,11 @@ export default async function(options) {
         {
             title: 'Copy CSS framework project files',
             task: () => copyFiles(cssTemplateDir, options.targetDirectory),
+            skip: () => !cssTemplateDir
+        },
+        {
+            title: 'Inject CSS framework dependencies',
+            task: () => injectDependency(cssTemplate.dependencies),
             skip: () => !cssTemplateDir
         },
         {

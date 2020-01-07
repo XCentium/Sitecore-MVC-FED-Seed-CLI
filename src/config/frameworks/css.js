@@ -5,10 +5,16 @@ const frameworks = [
     {
         title: 'Bootstrap 4',
         template: 'bootstrap-4',
+        dependencies: {
+            "bootstrap": "^4.4.1"
+        }
     },
     {
         title: 'Tailwind CSS',
-        template: 'tailwindcss'
+        template: 'tailwindcss',
+        dependencies: {
+            "tailwindcss": "^1.1.4"
+        }
     }
 ]
 
