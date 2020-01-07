@@ -5,6 +5,7 @@ import chalk from 'chalk';
 import Listr from 'listr';
 import { frameworks as cssFrameworks } from '../config/frameworks/css';
 import copyFiles from './copy-files';
+import initGit from './initialize-git';
 
 const currentFileUrl = url.fileURLToPath(import.meta.url);
 
@@ -49,6 +50,11 @@ export default async function(options) {
             title: 'Copying CSS framework project files',
             task: () => copyFiles(cssTemplateDir, options.targetDirectory),
             skip: () => !cssTemplateDir
+        },
+        {
+            title: 'Initializing git',
+            task: () => initGit(options.targetDirectory),
+            enabled: () => options.git
         }
     ]);
 

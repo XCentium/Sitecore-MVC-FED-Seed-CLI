@@ -24,6 +24,7 @@ export default async function(options) {
     const answers = await inquirer.prompt(questionQueue);
     return {
         ...options,
-        cssFramework: options.cssFramework || answers.cssFramework
+        cssFramework: options.cssFramework || answers.cssFramework,
+        git: options.git || answers.git
     }
 }
