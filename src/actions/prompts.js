@@ -1,7 +1,7 @@
+import inquirer from 'inquirer';
 import multichoice from '../utils/inquirer-multichoice';
 import * as questions from '../config/questions';
-import { defaultOption as defaultCssFramework } from '../config/frameworks/css';
-import inquirer from 'inquirer';
+import { defaultFramework as defaultCssFramework } from '../config/frameworks/css';
 
 export default async function(options) {
     if(options.skipPrompts) {
@@ -14,9 +14,11 @@ export default async function(options) {
     let questionQueue = [];
 
     if(!options.cssFramework) {
-        questionQueue.push(
-            multichoice(questions.css)
-        )
+        questionQueue.push(multichoice(questions.css));
+    }
+
+    if(!options.git) {
+        questionQueue.push(questions.git);
     }
 
     const answers = await inquirer.prompt(questionQueue);

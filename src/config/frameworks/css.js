@@ -1,7 +1,6 @@
-export const options = [
+const frameworks = [
     {
-        title: 'None',
-        template: false
+        title: 'None'
     },
     {
         title: 'Bootstrap 4',
@@ -13,9 +12,9 @@ export const options = [
     }
 ]
 
-export const defaultOption = 'None';
+const defaultFramework = 'None';
 
 export { 
-    options, 
-    defaultOption 
+    frameworks, 
+    defaultFramework 
 }
