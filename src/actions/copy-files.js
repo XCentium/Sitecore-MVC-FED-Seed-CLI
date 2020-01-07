@@ -3,6 +3,6 @@ import { promisify } from 'util';
 
 const copy = promisify(ncp);
 
-export default async function(templateDirectory, targetDirectory) {
-    return copy(templateDirectory, targetDirectory, { clobber: false });
+export default async function(templateDirectory, targetDirectory, clobber = false) {
+    return copy(templateDirectory, targetDirectory, { clobber }).catch(err => console.log(err));
 }

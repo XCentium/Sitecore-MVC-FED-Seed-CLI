@@ -4,11 +4,11 @@ const frameworks = [
     },
     {
         title: 'Bootstrap 4',
-        template: 'bootstrap',
+        template: 'bootstrap-4',
     },
     {
         title: 'Tailwind CSS',
-        template: 'tailwind'
+        template: 'tailwind-css'
     }
 ]
 
