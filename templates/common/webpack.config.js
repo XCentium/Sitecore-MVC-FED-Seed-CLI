@@ -185,6 +185,19 @@ module.exports = env => {
                     },
                 })
             ),
+            ifProduction(
+                new EventHooksPlugin({
+                    thisCompilation: () => {
+                        patternlab.build(() => {
+                            console.log(
+                                '\x1b[36m',
+                                '### Patternlab Rebuild Complete ###',
+                                '\x1b[0m'
+                            );
+                        }, true);
+                    },
+                })
+            ),
             new BrowserSyncPlugin({
                 port: plConfig.app.webpackDevServer.port,
             }),
