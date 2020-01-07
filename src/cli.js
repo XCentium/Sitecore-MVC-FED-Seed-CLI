@@ -6,4 +6,5 @@ export async function cli(args) {
     let options = parseArgs(args);
     options = await prompts(options);
     await createProject(options);
+    process.exit();
 }

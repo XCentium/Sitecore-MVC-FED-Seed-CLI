@@ -7,7 +7,7 @@ const frameworks = [
         template: 'bootstrap',
     },
     {
-        title: 'TailwindCss',
+        title: 'Tailwind CSS',
         template: 'tailwind'
     }
 ]
