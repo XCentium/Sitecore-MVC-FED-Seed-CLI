@@ -1,11 +1,7 @@
 {
-  "name": "webpack-patternlab",
+  "name": "xc-component-library",
   "version": "0.0.1",
-  "description": "Webpack version of Patternlab",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/adambezemek/webpack-patternlab"
-  },
+  "description": "XC Component Library seed project for quickly spinning up frontend solutions",
   "license": "(MIT OR Apache-2.0)",
   "scripts": {
     "start": "npm run patternlab:serve",
