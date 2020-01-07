@@ -1,4 +1,3 @@
-import fs from 'fs-extra';
 import chalk from 'chalk';
 import Listr from 'listr';
 import paths from '../config/env';
@@ -14,14 +13,13 @@ export default async function(options) {
     };
 
     // check path to common template
-    checkPathIntegrity(paths.templates.common);
+    await checkPathIntegrity(paths.templates.common);
 
-    // parse css framework location and if it's directory exists, check directory integrity. If integrity test fails, it is assumed no framework is selected
+    // parse css framework location and check directory integrity. 
+    // if integrity test fails, it is assumed no framework is selected
     const cssTemplate = cssFrameworks.find(option => option.title === options.cssFramework);
     const cssTemplateDir = cssTemplate && paths.templates.css[cssTemplate.template] ? paths.templates.css[cssTemplate.template] : false;
-    if(cssTemplateDir) {
-        checkPathIntegrity(cssTemplateDir, () => console.log(chalk.green.bold('No CSS framework selected')));
-    }
+    await checkPathIntegrity(cssTemplateDir, () => console.log(chalk.green.bold('No CSS framework selected')));
 
     const tasks = new Listr([
         {
