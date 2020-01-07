@@ -1,14 +1,18 @@
 import path from 'path';
+import { frameworks as cssFrameworks } from './frameworks/css';
 
 const root = path.resolve(__dirname, '../../');
+
+const cssPaths = {};
+cssFrameworks.forEach(framework => {
+    if(framework.template) {
+        cssPaths[framework.template] = path.resolve(root, 'templates/css', framework.template);
+    }
+});
 
 export default {
     templates: {
         common: path.resolve(root, './templates/common'),
-        css: {
-            'bootstrap-3': path.resolve(root, './templates/css/bootstrap-3'),
-            'bootstrap-4': path.resolve(root, './templates/css/bootstrap-4'),
-            'tailwindcss': path.resolve(root, './templates/css/tailwindcss')
-        }
+        css: cssPaths
     }
 };
