@@ -5,7 +5,7 @@
 - `npm install -g @xcentium/xc-cli`
 
 ## Creating a Project
-- `xc-cli` - *while in a terminal window scoped to the empty directory you wish to instantiate your project
+- `xc-cli` - *while in a terminal scoped to the directory you want your project to be created*
 
 ## Commands
 - `-s`: Skip prompts and install with no frameworks selected
