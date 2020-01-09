@@ -1,22 +1,13 @@
-# Patternlab using Webpack
+# XC Seed Project Cli
 
-## Getting started
+## Installation
 
-- `git clone https://github.com/XCentium/xc-component-library-seed`
-- `cd xc-component-library-seed`
-- `npm install`
+- `npm install -g @xcentium/xc-cli`
 
-## Local Development
+## Creating a Project
+- `xc-cli` - *while in a terminal scoped to the directory you want your project to be created*
 
-- `npm start`
-
-## Production Build
-
-- `npm run build`
-
-## Test the Production Build
-- `npm run build`
-- `cd public`
-- `npx lite-server` - *or any other simple server setup*
-
->The `public` folder can be pushed out to an Azure server or another host for QA testing if the project requires a FE testing environment that is separate from the Sitecore solution.
+## Commands
+- `-s`: Skip prompts and install with no frameworks selected
+- `-g`: Initialize as a Git repository
+- `-i`: Automatically install Node dependencies as soon as project files are copied to directory
