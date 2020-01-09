@@ -1,4 +1,4 @@
-# XC Component Library Seed Project Cli
+# XC Seed Project Cli
 
 ## Installation
 
