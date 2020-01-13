@@ -13,12 +13,22 @@
     "webpackMerge": {
       "entry": "replace"
     },
-    "uglify": {
-      "sourceMap": false,
-      "parallel": true,
-      "uglifyOptions": {
+    "terser": {
+      "sourceMap": true,
+      "extractComments": false,
+      "terserOptions": {
+        "output": {
+          "comments": false
+        },
         "mangle": {
-          "reserved": [ "$super", "$", "jQuery", "JQuery", "exports", "require" ]
+          "reserved": [
+            "$super",
+            "$",
+            "jQuery",
+            "JQuery",
+            "exports",
+            "require"
+          ]
         }
       }
     },

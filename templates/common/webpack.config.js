@@ -9,7 +9,7 @@ const plConfig = require('./patternlab-config.json');
 const patternlab = require('patternlab-node')(plConfig);
 const patternEngines = require('patternlab-node/core/lib/pattern_engines');
 const merge = require('webpack-merge');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -27,10 +27,9 @@ module.exports = env => {
             fs: 'empty',
         },
         entry: {
-            'js/app': globby
+            app: globby
                 .sync([
-                    resolve(__dirname, `${plConfig.paths.source.js}**/*.js`),
-                    '!**/*.test.js',
+                    resolve(__dirname, `${plConfig.paths.source.js}index.js`)
                 ])
                 .map(function (filePath) {
                     return filePath;
@@ -48,21 +47,22 @@ module.exports = env => {
         },
         output: {
             path: resolve(__dirname, plConfig.paths.public.root),
-            filename: '[name].js',
+            filename: 'js/[name].js',
+            chunkFilename: 'js/[name].js'
         },
         externals: {
             jquery: 'jQuery'
         },
         optimization: {
             minimizer: [
-                new UglifyJsPlugin(plConfig.app.uglify),
+                new TerserPlugin(plConfig.app.terser),
                 new OptimizeCssAssetsPlugin({}),
             ],
             splitChunks: {
                 cacheGroups: {
                     default: false,
-                    vendors: {
-                        name: 'js/vendor',
+                    vendor: {
+                        name: 'vendor',
                         test: /[\\/]node_modules[\\/].*\.js$/,
                         chunks: 'initial'
                     },
