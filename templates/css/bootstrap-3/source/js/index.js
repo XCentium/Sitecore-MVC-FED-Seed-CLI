@@ -2,14 +2,7 @@ import 'bootstrap/dist/js/bootstrap';
 
 console.log('init');
 
-//UNCOMMENT THIS IF YOU WANT TO USE JQUERY
+//$ CAN BE USED IN ANYWHERE TO REFERENCE AN EXTERNAL INSTANCE OF JQUERY
+
+//UNCOMMENT THIS IF YOU WANT TO USE JQUERY AS A DEPENDENCY FROM NODE_MODULES (won't be accessible on the global scope & will require installation 'npm install jquery')
 // import $ from 'jquery';
-
-// // Better jQuery = https://learn.jquery.com/code-organization/beware-anonymous-functions/
-// var APP = {
-//     onReady: function() {
-//         console.log('ready!');
-//     },
-// };
-
-// $(document).ready(APP.onReady);
