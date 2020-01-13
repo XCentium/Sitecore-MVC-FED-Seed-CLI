@@ -60,12 +60,11 @@ module.exports = env => {
             ],
             splitChunks: {
                 cacheGroups: {
-                    vendor: {
-                        test: /node_modules/,
-                        chunks: 'initial',
+                    default: false,
+                    vendors: {
                         name: 'js/vendor',
-                        priority: 10,
-                        enforce: true,
+                        test: /[\\/]node_modules[\\/].*\.js$/,
+                        chunks: 'initial'
                     },
                 },
             },
