@@ -48,7 +48,8 @@ module.exports = env => {
         output: {
             path: resolve(__dirname, plConfig.paths.public.root),
             filename: 'js/[name].js',
-            chunkFilename: 'js/[name].js'
+            chunkFilename: 'js/[name].js',
+            publicPath: '/'
         },
         externals: {
             jquery: 'jQuery'
