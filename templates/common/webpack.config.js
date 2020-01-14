@@ -21,7 +21,7 @@ module.exports = env => {
     const { ifProduction, ifDevelopment } = getIfUtils(env);
 
     const config = merge.smartStrategy(plConfig.app.webpackMerge)({
-        devtool: ifDevelopment('source-map'),
+        devtool: 'source-map',
         context: resolve(__dirname, plConfig.paths.source.root),
         node: {
             fs: 'empty',
