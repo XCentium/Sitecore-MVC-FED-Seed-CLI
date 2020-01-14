@@ -17,7 +17,9 @@
       "sourceMap": false,
       "parallel": true,
       "uglifyOptions": {
-        "mangle": false
+        "mangle": {
+          "reserved": [ "$super", "$", "jQuery", "JQuery", "exports", "require" ]
+        }
       }
     },
     "namespace": ""

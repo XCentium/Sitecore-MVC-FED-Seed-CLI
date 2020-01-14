@@ -32,7 +32,7 @@ module.exports = env => {
                     resolve(__dirname, `${plConfig.paths.source.js}**/*.js`),
                     '!**/*.test.js',
                 ])
-                .map(function(filePath) {
+                .map(function (filePath) {
                     return filePath;
                 }),
             'css/app': globby
@@ -42,13 +42,16 @@ module.exports = env => {
                         `${plConfig.paths.source.scss}**/style.scss`
                     ),
                 ])
-                .map(function(filePath) {
+                .map(function (filePath) {
                     return filePath;
                 }),
         },
         output: {
             path: resolve(__dirname, plConfig.paths.public.root),
             filename: '[name].js',
+        },
+        externals: {
+            jquery: 'jQuery'
         },
         optimization: {
             minimizer: [
@@ -115,10 +118,10 @@ module.exports = env => {
             ]),
             ifDevelopment(
                 new EventHooksPlugin({
-                    afterEmit: function(compilation) {
+                    afterEmit: function (compilation) {
                         const supportedTemplateExtensions = patternEngines.getSupportedFileExtensions();
                         const templateFilePaths = supportedTemplateExtensions.map(
-                            function(dotExtension) {
+                            function (dotExtension) {
                                 return `${plConfig.paths.source.patterns}**/*${dotExtension}`;
                             }
                         );
@@ -137,10 +140,10 @@ module.exports = env => {
                             templateFilePaths
                         );
 
-                        allWatchFiles.forEach(function(globPath) {
+                        allWatchFiles.forEach(function (globPath) {
                             const patternFiles = globby
                                 .sync(globPath)
-                                .map(function(filePath) {
+                                .map(function (filePath) {
                                     return resolve(__dirname, filePath);
                                 });
                             patternFiles.forEach(item => {
@@ -163,7 +166,7 @@ module.exports = env => {
                                 '### Public Folder Cleaned ###',
                                 '\x1b[0m'
                             );
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 patternlab.build(() => {
                                     console.log(
                                         '\x1b[36m',
@@ -216,6 +219,9 @@ module.exports = env => {
                 },
                 canPrint: true,
             }),
+            new webpack.DefinePlugin({
+                $: 'jQuery'
+            })
         ]),
         devServer: {
             contentBase: resolve(__dirname, plConfig.paths.public.root),
