@@ -1,4 +1,4 @@
-# XC Seed Project CLI
+# XC-FED Seed Project CLI
 The XC Seed Project CLI is a scaffolding tool for the front-end development workspace that you would like tied to your Sitecore MVC solution. The CLI creates a [Pattern Lab](https://patternlab.io/) design system with the choice to use optional CSS starter frameworks.
 
 ## Installation
