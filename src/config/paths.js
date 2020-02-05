@@ -1,5 +1,6 @@
 import path from 'path';
 import { frameworks as cssFrameworks } from './frameworks/css';
+import { frameworks as javascriptFrameworks } from './frameworks//javascript';
 
 const root = path.resolve(__dirname, '../../');
 
@@ -10,9 +11,17 @@ cssFrameworks.forEach(framework => {
     }
 });
 
+const javascriptPaths = {};
+javascriptFrameworks.forEach(framework => {
+    if(framework.template) {
+        javascriptPaths[framework.template] = path.resolve(root, 'templates/javascript', framework.template);
+    }
+});
+
 export default {
     templates: {
         common: path.resolve(root, './templates/common'),
-        css: cssPaths
+        css: cssPaths,
+        javascript: javascriptPaths
     }
 };
