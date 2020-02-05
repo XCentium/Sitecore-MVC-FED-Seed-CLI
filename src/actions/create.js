@@ -3,7 +3,7 @@ import Listr from 'listr';
 import paths from '../config/paths';
 import { frameworks as cssFrameworks } from '../config/frameworks/css';
 import copy from './copy';
-import initGit from './initialize-git';
+import git from './git';
 import checkPathIntegrity from '../utils/path-integrity';
 import { projectInstall } from 'pkg-install';
 
@@ -41,7 +41,7 @@ export default async function(options) {
         },
         {
             title: 'Initialize git',
-            task: () => initGit(options.targetDirectory),
+            task: () => git(options.targetDirectory),
             enabled: () => options.git
         },
         {
