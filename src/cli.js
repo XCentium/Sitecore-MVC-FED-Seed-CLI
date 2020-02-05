@@ -8,7 +8,7 @@ export async function cli(args) {
         cmd = 'version';
     }
 
-    if(cl.options.help) {
+    if(cl.options.help || !cmd) {
         cmd = 'help';
     }
 
