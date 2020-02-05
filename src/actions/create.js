@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import Listr from 'listr';
 import paths from '../config/paths';
 import { frameworks as cssFrameworks } from '../config/frameworks/css';
+import prompts from './prompts';
 import copy from './copy';
 import git from './git';
 import checkPathIntegrity from '../utils/path-integrity';
@@ -9,7 +10,8 @@ import { projectInstall } from 'pkg-install';
 
 import injectDependency from './inject-dependency';
 
-export default async function(options) {
+export default async function(args) {
+    let options = await prompts(args);
     options = {
         ...options,
         targetDirectory: process.cwd()

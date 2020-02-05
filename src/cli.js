@@ -15,8 +15,7 @@ export async function cli(args) {
     // actions loaded w/ dynamic imports to improve cli performance
     switch(cmd) {
         case 'init':
-            const options = await (await import('./actions/prompts')).default(cl.options);
-            await (await import('./actions/create')).default(options);
+            await (await import('./actions/create')).default(cl.options);
             break;
         case 'version':
             (await import('./actions/version')).default();
