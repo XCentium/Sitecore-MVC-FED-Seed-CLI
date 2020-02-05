@@ -27,7 +27,7 @@ const help = {
         {
             heading: 'Options:',
             lines: [
-                '-s, --simple     skip prompts and generate with no frameworks selected',
+                '-s, --simple     skip prompts and generate project with no frameworks selected',
                 '-g, --git        initialize project as a Git repository',
                 '-i, --install    automatically install Node dependencies'
             ]
