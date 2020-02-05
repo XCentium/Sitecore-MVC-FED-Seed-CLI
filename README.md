@@ -15,8 +15,8 @@ The XCentium Sitecore MVC FED Seed CLI is a scaffolding tool for the front-end d
 
 ## Creating a Project
 - `xc-cli init` - *while in a terminal scoped to the directory that you want your project to be created.*
+- **Options:**
+ - `-s`: skips prompts and generate project with no frameworks selected
+ - `-g`: initializes as a Git repository
+ - `-i`: automatically installs Node dependencies as soon as project files are copied to directory
 
-### Options
-- `-s`: skips prompts and generate project with no frameworks selected
-- `-g`: initializes as a Git repository
-- `-i`: automatically installs Node dependencies as soon as project files are copied to directory
