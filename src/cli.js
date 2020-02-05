@@ -18,7 +18,7 @@ export async function cli(args) {
             await (await import('./actions/create')).default(cl.options);
             break;
         case 'version':
-            (await import('./actions/version')).default();
+            await (await import('./actions/version')).default();
             break;
         case 'help':
             (await import('./actions/help')).default(cl.command[2]);
