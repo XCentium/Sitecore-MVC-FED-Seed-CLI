@@ -51,6 +51,11 @@ module.exports = env => {
             chunkFilename: 'js/[name].js',
             publicPath: '/'
         },
+        resolve: {
+            alias: {
+                'vue$': 'vue/dist/vue.esm.js',
+            }
+        },
         externals: {
             jquery: 'jQuery'
         },
