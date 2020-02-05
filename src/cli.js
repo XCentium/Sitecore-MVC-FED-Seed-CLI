@@ -2,10 +2,14 @@ import parseArgs from './config/args';
 
 export async function cli(args) {
     const cl = parseArgs(args);
-    let cmd = cl.command;
+    let cmd = cl.command[1];
 
     if(cl.options.version) {
         cmd = 'version';
+    }
+
+    if(cl.options.help) {
+        cmd = 'help';
     }
 
     // actions loaded w/ dynamic imports to improve cli performance
@@ -16,6 +20,9 @@ export async function cli(args) {
             break;
         case 'version':
             (await import('./actions/version')).default();
+            break;
+        case 'help':
+            (await import('./actions/help'))[cl.command[2] ? cl.command[2] : 'default']();
             break;
         default:
             console.error(`"${cmd}" is not a valid command!`);
