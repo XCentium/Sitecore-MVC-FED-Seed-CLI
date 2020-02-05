@@ -22,7 +22,12 @@ export async function cli(args) {
             (await import('./actions/version')).default();
             break;
         case 'help':
-            (await import('./actions/help'))[cl.command[2] ? cl.command[2] : 'default']();
+            const help = await import('./actions/help');
+            try {
+                help[cl.command[2] ? cl.command[2] : 'default']();
+            } catch(err) {
+                help.default();
+            }
             break;
         default:
             console.error(`"${cmd}" is not a valid command!`);
