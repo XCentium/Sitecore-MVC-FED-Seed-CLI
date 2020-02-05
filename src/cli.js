@@ -16,7 +16,7 @@ export async function cli(args) {
     switch(cmd) {
         case 'init':
             const options = await (await import('./actions/prompts')).default(cl.options);
-            await (await import('./actions/create-project')).default(options);
+            await (await import('./actions/create')).default(options);
             break;
         case 'version':
             (await import('./actions/version')).default();

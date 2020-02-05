@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import Listr from 'listr';
 import paths from '../config/paths';
 import { frameworks as cssFrameworks } from '../config/frameworks/css';
-import copyFiles from './copy-files';
+import copy from './copy';
 import initGit from './initialize-git';
 import checkPathIntegrity from '../utils/path-integrity';
 import { projectInstall } from 'pkg-install';
@@ -27,11 +27,11 @@ export default async function(options) {
     const tasks = new Listr([
         {
             title: 'Copy common project files',
-            task: () => copyFiles(paths.templates.common, options.targetDirectory)
+            task: () => copy(paths.templates.common, options.targetDirectory)
         },
         {
             title: 'Copy CSS framework project files',
-            task: () => copyFiles(cssTemplateDir, options.targetDirectory),
+            task: () => copy(cssTemplateDir, options.targetDirectory),
             skip: () => !cssTemplateDir
         },
         {
