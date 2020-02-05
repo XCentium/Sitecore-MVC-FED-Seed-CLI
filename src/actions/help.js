@@ -1,5 +1,5 @@
 const help = {
-    default: [
+    cli: [
         {
             heading: 'Usage: xc-cli <command> [options]',
             lines: []
@@ -35,14 +35,10 @@ const help = {
     ]
 };
 
-const display = arr => {
-    arr.forEach(item => {
+export default function(command = 'cli') {
+    help[command].forEach(item => {
         console.log(item.heading);
         item.lines.forEach(line => console.log(` ${line}`));
         console.log();
     });
-};
-
-export default display.bind(this, help.default);
-
-export const init = display.bind(this, help.init);
+}
