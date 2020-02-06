@@ -1,5 +1,5 @@
 import * as cssFrameworks from './frameworks/css';
-import * as javascriptFrameworks from './frameworks/javascript';
+import * as jsFrameworks from './frameworks/js';
 
 const css = {
     type: 'list',
@@ -9,12 +9,12 @@ const css = {
     default: cssFrameworks.defaultFramework
 };
 
-const javascript = {
+const js = {
     type: 'list',
-    name: 'javascriptFramework',
+    name: 'jsFramework',
     message: 'Choose a Javascript Framework',
-    choices: javascriptFrameworks.frameworks.map(option => option.title),
-    default: javascriptFrameworks.defaultFramework
+    choices: jsFrameworks.frameworks.map(option => option.title),
+    default: jsFrameworks.defaultFramework
 };
 
 const git = {
@@ -26,6 +26,6 @@ const git = {
 
 export { 
     css,
-    javascript,
+    js,
     git
 }
