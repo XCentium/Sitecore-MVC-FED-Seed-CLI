@@ -9,6 +9,7 @@ import checkPathIntegrity from '../utils/path-integrity';
 import { projectInstall } from 'pkg-install';
 
 import injectDependency from './inject-dependency';
+import parseTemplate from './parse-template';
 
 export default async function(args) {
     let options = await prompts(args);
@@ -20,11 +21,7 @@ export default async function(args) {
     // check path to common template
     await checkPathIntegrity(paths.templates.common);
 
-    // parse css framework location and check directory integrity. 
-    // if integrity test fails, it is assumed no framework is selected
-    const cssTemplate = cssFrameworks.find(option => option.title === options.cssFramework);
-    const cssTemplateDir = cssTemplate && paths.templates.css[cssTemplate.template] ? paths.templates.css[cssTemplate.template] : false;
-    await checkPathIntegrity(cssTemplateDir, () => console.log(chalk.green.bold('No CSS framework selected')));
+    const cssTemplate = await parseTemplate(cssFrameworks, options.cssFramework, 'css');
 
     const tasks = new Listr([
         {
@@ -33,13 +30,13 @@ export default async function(args) {
         },
         {
             title: 'Copy CSS framework project files',
-            task: () => copy(cssTemplateDir, options.targetDirectory),
-            skip: () => !cssTemplateDir
+            task: () => copy(cssTemplate.dir, options.targetDirectory),
+            skip: () => !cssTemplate.dir
         },
         {
             title: 'Inject CSS framework dependencies',
             task: () => injectDependency(cssTemplate.dependencies),
-            skip: () => !cssTemplateDir
+            skip: () => !cssTemplate.dir
         },
         {
             title: 'Initialize git',
