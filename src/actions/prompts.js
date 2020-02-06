@@ -31,6 +31,7 @@ export default async function(options) {
     return {
         ...options,
         cssFramework: options.cssFramework || answers.cssFramework,
+        jsFramework: options.jsFramework || answers.jsFramework,
         git: options.git || answers.git
     }
 }

@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import paths from '../config/paths';
 import checkPathIntegrity from '../utils/path-integrity';
 
