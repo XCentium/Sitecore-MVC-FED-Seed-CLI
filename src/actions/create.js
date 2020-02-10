@@ -2,14 +2,16 @@ import chalk from 'chalk';
 import Listr from 'listr';
 import paths from '../config/paths';
 import { frameworks as cssFrameworks } from '../config/frameworks/css';
-import copyFiles from './copy-files';
-import initGit from './initialize-git';
+import prompts from './prompts';
+import copy from './copy';
+import git from './git';
 import checkPathIntegrity from '../utils/path-integrity';
 import { projectInstall } from 'pkg-install';
 
 import injectDependency from './inject-dependency';
 
-export default async function(options) {
+export default async function(args) {
+    let options = await prompts(args);
     options = {
         ...options,
         targetDirectory: process.cwd()
@@ -27,11 +29,11 @@ export default async function(options) {
     const tasks = new Listr([
         {
             title: 'Copy common project files',
-            task: () => copyFiles(paths.templates.common, options.targetDirectory)
+            task: () => copy(paths.templates.common, options.targetDirectory)
         },
         {
             title: 'Copy CSS framework project files',
-            task: () => copyFiles(cssTemplateDir, options.targetDirectory),
+            task: () => copy(cssTemplateDir, options.targetDirectory),
             skip: () => !cssTemplateDir
         },
         {
@@ -41,7 +43,7 @@ export default async function(options) {
         },
         {
             title: 'Initialize git',
-            task: () => initGit(options.targetDirectory),
+            task: () => git(options.targetDirectory),
             enabled: () => options.git
         },
         {

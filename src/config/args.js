@@ -6,17 +6,26 @@ export default function parseArgs(rawArgs) {
             '--simple': Boolean,
             '--git': Boolean,
             '--install': Boolean,
+            '--version': Boolean,
+            '--help': Boolean,
             '-s': '--simple',
             '-g': '--git',
-            '-i': '--install'
+            '-i': '--install',
+            '-v': '--version',
+            '-h': '--help'
         },
         {
             argv: rawArgs.slice(1)
         }
     );
     return {
-        skipPrompts: args['--simple'] || false,
-        git: args['--git'] || false,
-        runInstall: args['--install'] || false
+        command: args['_'],
+        options: {
+            skipPrompts: args['--simple'] || false,
+            git: args['--git'] || false,
+            runInstall: args['--install'] || false,
+            version: args['--version'] || false,
+            help: args['--help'] || false
+        }
     }
 }
