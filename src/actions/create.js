@@ -5,6 +5,7 @@ import { frameworks as cssFrameworks } from '../config/frameworks/css';
 import { frameworks as jsFrameworks } from '../config/frameworks/js';
 import prompts from './prompts';
 import tasks from './tasks';
+import resolveDependencies from './resolve-dependencies';
 import checkPathIntegrity from '../utils/path-integrity';
 import parseTemplate from './parse-template';
 
@@ -21,7 +22,9 @@ export default async function(args) {
     const cssTemplate = await parseTemplate(cssFrameworks, options.cssFramework, 'css');
     const jsTemplate =  await parseTemplate(jsFrameworks, options.jsFramework, 'js');
 
-    const queue = new Listr(tasks(options, { cssTemplate, jsTemplate }));
+    const dependencies = resolveDependencies([ cssTemplate, jsTemplate ]);
+
+    const queue = new Listr(tasks(options, { cssTemplate, jsTemplate }, dependencies));
     await queue.run();
 
     console.log('%s Project ready', chalk.green.bold('DONE'));

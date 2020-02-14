@@ -4,7 +4,7 @@ import git from './git';
 import { projectInstall } from 'pkg-install';
 import injectDependency from './inject-dependency';
 
-export default function(options, templates) {
+export default function(options, templates, dependencies) {
     return [
         {
             title: 'Copy common project files',
@@ -16,19 +16,14 @@ export default function(options, templates) {
             skip: () => !templates.cssTemplate.dir
         },
         {
-            title: 'Inject CSS framework dependencies',
-            task: () => injectDependency(templates.cssTemplate.dependencies),
-            skip: () => !templates.cssTemplate.dir
-        },
-        {
             title: 'Copy JS framework project files',
             task: () => copy(templates.jsTemplate.dir, options.targetDirectory),
             skip: () => !templates.jsTemplate.dir
         },
         {
-            title: 'Inject JS framework dependencies',
-            task: () => injectDependency(templates.jsTemplate.dependencies),
-            skip: () => !templates.jsTemplate.dir
+            title: 'Inject framework dependencies',
+            task: () => injectDependency(dependencies),
+            skip: () => !dependencies
         },
         {
             title: 'Initialize git',
