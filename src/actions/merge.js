@@ -9,7 +9,6 @@ export default async function(src, dest) {
             merge = true;
         }
     }
-
     
     if(merge) {
         const exists = await fs.pathExists(dest);

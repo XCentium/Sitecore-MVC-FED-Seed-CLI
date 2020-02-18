@@ -28,4 +28,4 @@ export {
     css,
     js,
     git
-}
+};
