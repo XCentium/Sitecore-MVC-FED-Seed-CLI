@@ -19,12 +19,15 @@ export default async function(args) {
     // check path to common template
     await checkPathIntegrity(paths.templates.common);
 
-    const cssTemplate = await parseTemplate(cssFrameworks, options.cssFramework, 'css');
-    const jsTemplate =  await parseTemplate(jsFrameworks, options.jsFramework, 'js');
+    const templates = [
+        { dir: paths.templates.common },
+        await parseTemplate(cssFrameworks, options.cssFramework, 'css'),
+        await parseTemplate(jsFrameworks, options.jsFramework, 'js')
+    ];
 
-    const dependencies = resolveDependencies([ cssTemplate, jsTemplate ]);
+    const dependencies = resolveDependencies(templates);
 
-    const queue = new Listr(tasks(options, { cssTemplate, jsTemplate }, dependencies));
+    const queue = new Listr(tasks(options, templates, dependencies));
     await queue.run();
 
     console.log('%s Project ready', chalk.green.bold('DONE'));
