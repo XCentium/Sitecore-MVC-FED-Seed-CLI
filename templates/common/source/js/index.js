@@ -13,9 +13,9 @@
  * #region :MIDDLE
  */
 
-console.log('init');
-
 //$ CAN BE USED IN ANYWHERE TO REFERENCE AN EXTERNAL INSTANCE OF JQUERY
+
+console.log('init');
 
 /*
  * #endregion
