@@ -81,8 +81,22 @@ async function merge(dest, src) {
     return newFile;
 }
 
-export async function cleanup(file) {
-    console.log(file);
+export async function cleanup(path) {
+    const cleanupFile = new Promise((resolve, reject) => {
+        fs.readFile(path, 'utf8', async (err, data) => {
+            let lines = data.split('\n');
+            const cleaned = lines
+                .filter(line => !line.includes(settings.start) && !line.includes(settings.end))
+                .reduce((acc, line) => `${acc}\n${line}`);
+            
+            await fs.writeFile(path, cleaned).catch(err => reject(err));
+            resolve();
+        });
+    });
+
+    return cleanupFile.catch(err => {
+        console.log(err);
+    })
 }
 
 export default async function(src, dest) {
