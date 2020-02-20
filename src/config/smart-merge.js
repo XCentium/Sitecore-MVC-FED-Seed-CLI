@@ -1,15 +1,16 @@
-const start = '//#region';
-
-const end = '//#endregion';
+const start = '/** #region';
+const end = '/** #endregion */';
+const nameDlm = '@';
 
 const regions = {
-    top: ' Top ',
-    middle: ' Middle ',
-    bottom: ' Bottom '
+    Top: '',
+    Middle: '',
+    Bottom: ''
 };
 
 export {
     start,
     end,
+    nameDlm,
     regions
 };

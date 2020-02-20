@@ -1,9 +1,5 @@
-/*
- * #region :TOP
- */
+/** #region @Top */
 
 import 'bootstrap/dist/js/bootstrap';
 
-/*
- * #endregion
- */
+/** #endregion */

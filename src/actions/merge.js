@@ -15,13 +15,11 @@ export default async function(src, dest) {
         const exists = await fs.pathExists(dest);
         if(exists) {
             // if this is a mergeable file and an existing file exists, merge the existing file and queued file
-            const prevFile = await fs.readFile(dest, 'utf8');
-            const nextFile = await fs.readFile(src, 'utf8');
-            const newFile = smartMerge(prevFile, nextFile);
+            const newFile = await smartMerge(dest, src);
             await fs.writeFile(dest, newFile).catch(err => {
                 console.log(err);
                 process.exit(1);
-            })
+            });
             return false;
         }
     }
