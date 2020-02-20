@@ -1,7 +1,6 @@
 import fs from 'fs-extra';
-import merge from './merge';
-import mergeable from '../config/mergeable';
-import { cleanup } from './smart-merge';
+import { mergeable } from '../config/merge';
+import merge, { cleanup } from './merge';
 
 export default async function(templates, targetDirectory) {
     const copyFiles = new Promise(async (resolve, reject) => {

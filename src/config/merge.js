@@ -8,9 +8,14 @@ const regions = {
     Bottom: ''
 };
 
+const mergeable = [
+    '\\source\\js\\index.js'
+];
+
 export {
     start,
     end,
     nameDlm,
-    regions
+    regions,
+    mergeable
 };
