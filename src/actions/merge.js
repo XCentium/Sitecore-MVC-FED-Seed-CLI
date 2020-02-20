@@ -8,6 +8,7 @@ export default async function(src, dest) {
     for(let i = 0; i < mergeable.length; i++) {
         if(src.includes(mergeable[i])) {
             merge = true;
+            break;
         }
     }
     

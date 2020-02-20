@@ -1,5 +1,7 @@
 import fs from 'fs-extra';
 import merge from './merge';
+import mergeable from '../config/mergeable';
+import { cleanup } from './smart-merge';
 
 export default async function(templates, targetDirectory) {
     const copyFiles = new Promise(async (resolve, reject) => {
@@ -12,6 +14,9 @@ export default async function(templates, targetDirectory) {
                     }
                 ).catch(err => reject(err));
             }
+        }
+        for(let i = 0; i < mergeable.length; i++) {
+            await cleanup(targetDirectory + mergeable[i]);
         }
         resolve();
     });

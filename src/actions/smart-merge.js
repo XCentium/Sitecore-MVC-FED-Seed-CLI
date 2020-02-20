@@ -23,10 +23,8 @@ async function parseFile(path) {
             rl.on('line', line => {
                 // if we're inside of a defined region
                 if(tempRegion.name) {
-                    if(!line.includes(settings.end)) {
-                        tempRegion.inner += `${line}\n`;
-                    } else {
-                        // when we hit the region end, assign region values to map and clear temp
+                    if(line.includes(settings.end)) {
+                        // when we hit the region end, assign region values to map and clear temp var
                         for (let name in fileRegions) {
                             if(name === tempRegion.name) {
                                 fileRegions[name] = tempRegion.inner;
@@ -35,6 +33,8 @@ async function parseFile(path) {
                         }
                         tempRegion.name = '';
                         tempRegion.inner = '';
+                    } else {
+                        tempRegion.inner += `${line}\n`;
                     }
                 } else {
                     if(line.includes(settings.start)) {
@@ -47,7 +47,7 @@ async function parseFile(path) {
                     } else {
                         if(line) {
                             // keep track of lines outside of a region to add later
-                            temp += `\n${line}`
+                            temp += `${line}\n`
                         }
                     }
                 }
@@ -64,12 +64,23 @@ async function parseFile(path) {
     });
 }
 
+export async function cleanup(file) {
+    console.log(file);
+}
+
 export default async function(dest, src) {
     const prevFile = await parseFile(dest);
     const nextFile = await parseFile(src);
     let newFile = '';
     for(const region in settings.regions) {
-        newFile += prevFile[region] + nextFile[region];
+        newFile += `${settings.start} ${settings.nameDlm}${region} */\n`;
+        if(prevFile[region]) {
+            newFile += `${prevFile[region]}`;
+        }
+        if(nextFile[region]) {
+            newFile += `${nextFile[region]}`;
+        }
+        newFile += `${settings.end}\n\n`;
     }
     return newFile;
 }
