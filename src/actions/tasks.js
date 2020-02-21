@@ -3,6 +3,13 @@ import git from './git';
 import { projectInstall } from 'pkg-install';
 import injectDependency from './inject-dependency';
 
+/**
+ * Define task pipeline to create project
+ * @param {Object<string, boolean> | Object<string, string>} options 
+ * @param {Array<Object<string,string> | Object<string,Object<string,string>>>} templates 
+ * @param {Object<string,string>=} dependencies 
+ * @returns {Array<Object<string,string> | Object<string, Function>>}
+ */
 export default function(options, templates, dependencies) {
     return [
         {
