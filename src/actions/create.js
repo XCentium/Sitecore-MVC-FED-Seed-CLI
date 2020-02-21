@@ -11,7 +11,7 @@ import parseTemplate from './parse-template';
 
 /**
  * Create project based off of user input
- * @param {Object<string, boolean>} args 
+ * @param {Object<string, boolean>} args Parsed command line arguments using args
  */
 export default async function(args) {
     let options = await prompts(args);

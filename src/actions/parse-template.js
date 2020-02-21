@@ -4,9 +4,9 @@ import checkPathIntegrity from '../utils/path-integrity';
 
 /**
  * Parse template location
- * @param {Array<Object<string,string> | Object<string,Object<string,string>>>} frameworks 
- * @param {string} selected 
- * @param {?string} type 
+ * @param {Array<Object<string,string> | Object<string,Object<string,string>>>} frameworks Array of frameworks available
+ * @param {string} selected String to indicate with template is the selected template
+ * @param {?string} type String indicating which template path to look for the template files
  * @returns {Array<Object<string,string> | Object<string,Object<string,string>>>}
  */
 export default async function(frameworks, selected, type = 'common') {

@@ -4,7 +4,7 @@ import * as settings from '../config/merge';
 
 /**
  * Read file line by line to map sections to a region object
- * @param {string} path 
+ * @param {string} path Path to indicate which file we are parsing
  * @returns {Object<string,string>}
  */
 async function parseFile(path) {
@@ -72,8 +72,8 @@ async function parseFile(path) {
 
 /**
  * Merge files using "smart" region comments
- * @param {string} dest 
- * @param {string} src 
+ * @param {string} dest String to indicate the path of the existing file
+ * @param {string} src String to indicate the path of the file to merge into the existing file
  * @returns {Promise<string>}
  */
 async function merge(dest, src) {
@@ -95,7 +95,7 @@ async function merge(dest, src) {
 
 /**
  * Clean up "smart" region comments in mergeable files
- * @param {string} path 
+ * @param {string} path Path of the file that will be cleaned
  */
 export async function cleanup(path) {
     const cleanupFile = new Promise((resolve, reject) => {
@@ -117,8 +117,8 @@ export async function cleanup(path) {
 
 /**
  * Check if files should be merged, then merge them
- * @param {string} src 
- * @param {string} dest 
+ * @param {string} dest String to indicate the path of the existing file
+ * @param {string} src String to indicate the path of the file to merge into the existing file
  * @returns {Promise<boolean>}
  */
 export default async function(src, dest) {

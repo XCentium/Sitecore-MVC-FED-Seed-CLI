@@ -5,9 +5,9 @@ import injectDependency from './inject-dependency';
 
 /**
  * Define task pipeline to create project
- * @param {Object<string, boolean> | Object<string, string>} options 
- * @param {Array<Object<string,string> | Object<string,Object<string,string>>>} templates 
- * @param {Object<string,string>=} dependencies 
+ * @param {Object<string, boolean> | Object<string, string>} options Object of options the user has selected so far
+ * @param {Array<Object<string,string> | Object<string,Object<string,string>>>} templates Array of templates that will be used with the new project
+ * @param {Object<string,string>=} dependencies Abject of dependencies to be injected into the new project
  * @returns {Array<Object<string,string> | Object<string, Function>>}
  */
 export default function(options, templates, dependencies) {

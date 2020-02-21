@@ -4,7 +4,7 @@ import chalk from 'chalk';
 
 /**
  * Inject dependencies into created project's package.json
- * @param {Object<string,string>} dependencies 
+ * @param {Object<string,string>} dependencies Object of node dependencies to be injected into the project
  */
 export default async function(dependencies) {
     /** @type {Object<string,*>} */

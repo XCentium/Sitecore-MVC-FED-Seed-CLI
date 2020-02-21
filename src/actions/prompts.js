@@ -6,7 +6,7 @@ import { defaultFramework as defaultJsFramework } from '../config/frameworks/js'
 
 /**
  * Generate prompts and parse response from user
- * @param {Object<string, boolean>} options
+ * @param {Object<string, boolean>} options Options that the user has selected so far
  * @return {Object<string, boolean> | Object<string, string>}
  */
 export default async function(options) {
