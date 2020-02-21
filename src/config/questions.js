@@ -1,6 +1,10 @@
 import * as cssFrameworks from './frameworks/css';
 import * as jsFrameworks from './frameworks/js';
 
+/**
+ * Prompt to select CSS framework
+ * @type {Object<string,string> | Object<string,Array<string>>}
+ */
 const css = {
     type: 'list',
     name: 'cssFramework',
@@ -9,6 +13,10 @@ const css = {
     default: cssFrameworks.defaultFramework
 };
 
+/**
+ * Prompt to select JS framework
+ * @type {Object<string,string> | Object<string,Array<string>>}
+ */
 const js = {
     type: 'list',
     name: 'jsFramework',
@@ -17,6 +25,10 @@ const js = {
     default: jsFrameworks.defaultFramework
 };
 
+/**
+ * Prompt to initialize git
+ * @type {Object<string,string> | Object<string,boolean>}
+ */
 const git = {
     type: 'confirm',
     name: 'git',

@@ -1,3 +1,7 @@
+/**
+ * Configurable CSS frameworks
+ * @type {Array<Object<string,string> | Object<string,Object<string,string>>>}
+ */
 const frameworks = [
     {
         title: 'None'
@@ -28,6 +32,7 @@ const frameworks = [
     }
 ]
 
+/** @type {string} */
 const defaultFramework = 'None';
 
 export { 

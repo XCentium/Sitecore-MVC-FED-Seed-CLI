@@ -9,6 +9,10 @@ import resolveDependencies from './resolve-dependencies';
 import checkPathIntegrity from '../utils/path-integrity';
 import parseTemplate from './parse-template';
 
+/**
+ * Create project based off of user input
+ * @param {Object<string, boolean} args 
+ */
 export default async function(args) {
     let options = await prompts(args);
     options = {
@@ -31,5 +35,4 @@ export default async function(args) {
     await queue.run();
 
     console.log('%s Project ready', chalk.green.bold('DONE'));
-    return true;
 }

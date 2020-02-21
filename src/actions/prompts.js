@@ -4,6 +4,11 @@ import * as questions from '../config/questions';
 import { defaultFramework as defaultCssFramework } from '../config/frameworks/css';
 import { defaultFramework as defaultJsFramework } from '../config/frameworks/js';
 
+/**
+ * Generate prompts and parse response from user
+ * @param {Object<string, boolean>} options
+ * @return {Object<string, boolean> | Object<string, string>}
+ */
 export default async function(options) {
     if(options.skipPrompts) {
         return {
@@ -13,6 +18,7 @@ export default async function(options) {
         }
     }
 
+    /** @type {Array<Object>} */
     let questionQueue = [];
 
     if(!options.cssFramework) {
@@ -27,6 +33,7 @@ export default async function(options) {
         questionQueue.push(questions.git);
     }
 
+    /** @type {Object<string,string> | Object<string,boolean>} */
     const answers = await inquirer.prompt(questionQueue);
     return {
         ...options,
