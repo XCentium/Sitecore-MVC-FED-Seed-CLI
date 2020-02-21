@@ -2,6 +2,12 @@ import fs from 'fs-extra';
 import { mergeable } from '../config/merge';
 import merge, { cleanup } from './merge';
 
+/**
+ * Copy template files to initialized directory
+ * @param {Array<Object<string,string> | Object<string,Object<string,string>>>} templates 
+ * @param {string} targetDirectory 
+ * @returns {Promise}
+ */
 export default async function(templates, targetDirectory) {
     const copyFiles = new Promise(async (resolve, reject) => {
         // loop through templates and copy files if dir propery exists (for loop so that we can run async functions)

@@ -2,8 +2,14 @@ import fs from 'fs-extra';
 import readline from 'readline';
 import * as settings from '../config/merge';
 
+/**
+ * Read file line by line to map sections to a region object
+ * @param {string} path 
+ * @returns {Object<string,string>}
+ */
 async function parseFile(path) {
     return new Promise((resolve, reject) => {
+        /** @type {Object<string,string>} */
         let fileRegions = {};
 
         try {
@@ -64,6 +70,12 @@ async function parseFile(path) {
     });
 }
 
+/**
+ * Merge files using "smart" region comments
+ * @param {string} dest 
+ * @param {string} src 
+ * @returns {Promise<string>}
+ */
 async function merge(dest, src) {
     const prevFile = await parseFile(dest);
     const nextFile = await parseFile(src);
@@ -81,6 +93,10 @@ async function merge(dest, src) {
     return newFile;
 }
 
+/**
+ * Clean up "smart" region comments in mergeable files
+ * @param {string} path 
+ */
 export async function cleanup(path) {
     const cleanupFile = new Promise((resolve, reject) => {
         fs.readFile(path, 'utf8', async (err, data) => {
@@ -99,6 +115,12 @@ export async function cleanup(path) {
     })
 }
 
+/**
+ * Check if files should be merged, then merge them
+ * @param {string} src 
+ * @param {string} dest 
+ * @returns {Promise<boolean>}
+ */
 export default async function(src, dest) {
     let shouldMerge = false;
     // first check if this file is a mergeable file
