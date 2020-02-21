@@ -4,7 +4,7 @@ import * as settings from '../config/merge';
 
 async function parseFile(path) {
     return new Promise((resolve, reject) => {
-        let fileRegions = Object.assign({}, settings.regions);
+        let fileRegions = {};
 
         try {
             // create a readline instance so we can parse the file content
@@ -25,9 +25,9 @@ async function parseFile(path) {
                 if(tempRegion.name) {
                     if(line.includes(settings.end)) {
                         // when we hit the region end, assign region values to map and clear temp var
-                        for (let name in fileRegions) {
-                            if(name === tempRegion.name) {
-                                fileRegions[name] = tempRegion.inner;
+                        for (const name in settings.regions) {
+                            if(settings.regions[name] === tempRegion.name) {
+                                fileRegions[tempRegion.name] = tempRegion.inner;
                                 break;
                             }
                         }
@@ -40,7 +40,7 @@ async function parseFile(path) {
                     if(line.includes(settings.start)) {
                         // if this is a region start, interpolate region name from @param style syntax
                         let name = line.substring(
-                            line.indexOf(settings.nameDlm) + 1,
+                            line.indexOf(settings.namePrefix) + 1,
                             line.indexOf('*/')
                         );
                         tempRegion.name = name.trim();
@@ -68,8 +68,8 @@ async function merge(dest, src) {
     const prevFile = await parseFile(dest);
     const nextFile = await parseFile(src);
     let newFile = '';
-    for(const region in settings.regions) {
-        newFile += `${settings.start} ${settings.nameDlm}${region} */\n`;
+    Object.values(settings.regions).forEach(region => {
+        newFile += `${settings.start} ${settings.namePrefix}${region} */\n`;
         if(prevFile[region]) {
             newFile += `${prevFile[region]}`;
         }
@@ -77,7 +77,7 @@ async function merge(dest, src) {
             newFile += `${nextFile[region]}`;
         }
         newFile += `${settings.end}\n\n`;
-    }
+    });
     return newFile;
 }
 
