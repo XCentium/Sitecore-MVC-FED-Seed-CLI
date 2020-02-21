@@ -1,7 +1,13 @@
 import parseArgs from './config/args';
 
+/**
+ * Parse command line arguments and route to proper cli command
+ * @param {Array<string>} args 
+ */
 export async function cli(args) {
     const cl = parseArgs(args);
+
+    /** @type {string} */
     let cmd = cl.command[1];
 
     if(cl.options.version) {

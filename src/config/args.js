@@ -1,6 +1,12 @@
 import arg from 'arg';
 
+/**
+ * Convert command line arguments into parseable object
+ * @param {Array<string>} rawArgs Array of raw arguments passed in from the command line
+ * @return {Object<string, string>|Object<string, Object<string, boolean>>}
+ */
 export default function parseArgs(rawArgs) {
+    /** @type {(Object<string, boolean>|Object<string, Array<string>)} */
     const args = arg(
         {
             '--simple': Boolean,

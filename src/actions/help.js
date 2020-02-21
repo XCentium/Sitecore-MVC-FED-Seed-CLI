@@ -1,40 +1,9 @@
-const help = {
-    cli: [
-        {
-            heading: 'Usage: xc-cli <command> [options]',
-            lines: []
-        },
-        {
-            heading: 'Options:',
-            lines: [
-                '-v, --version   output the version number',
-                '-h, --help      output usage information'
-            ]
-        },
-        {
-            heading: 'Commands:',
-            lines: [
-                'init            generate a new project in current directory',
-                'help [cmd]      display help for [cmd]'
-            ]
-        }
-    ],
-    init: [
-        {
-            heading: 'Usage: xc-cli init [options]',
-            lines: []
-        },
-        {
-            heading: 'Options:',
-            lines: [
-                '-s, --simple     skip prompts and generate project with no frameworks selected',
-                '-g, --git        initialize project as a Git repository',
-                '-i, --install    automatically install Node dependencies'
-            ]
-        }
-    ]
-};
+import help from '../config/help';
 
+/**
+ * Display help information
+ * @param {?string} command String to indicate which command's help information we are showing
+ */
 export default function(command = 'cli') {
     help[command].forEach(item => {
         console.log(item.heading);

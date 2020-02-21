@@ -2,14 +2,17 @@ import chalk from 'chalk';
 import Listr from 'listr';
 import paths from '../config/paths';
 import { frameworks as cssFrameworks } from '../config/frameworks/css';
+import { frameworks as jsFrameworks } from '../config/frameworks/js';
 import prompts from './prompts';
-import copy from './copy';
-import git from './git';
+import tasks from './tasks';
+import resolveDependencies from './resolve-dependencies';
 import checkPathIntegrity from '../utils/path-integrity';
-import { projectInstall } from 'pkg-install';
+import parseTemplate from './parse-template';
 
-import injectDependency from './inject-dependency';
-
+/**
+ * Create project based off of user input
+ * @param {Object<string, boolean>} args Parsed command line arguments using args
+ */
 export default async function(args) {
     let options = await prompts(args);
     options = {
@@ -20,40 +23,16 @@ export default async function(args) {
     // check path to common template
     await checkPathIntegrity(paths.templates.common);
 
-    // parse css framework location and check directory integrity. 
-    // if integrity test fails, it is assumed no framework is selected
-    const cssTemplate = cssFrameworks.find(option => option.title === options.cssFramework);
-    const cssTemplateDir = cssTemplate && paths.templates.css[cssTemplate.template] ? paths.templates.css[cssTemplate.template] : false;
-    await checkPathIntegrity(cssTemplateDir, () => console.log(chalk.green.bold('No CSS framework selected')));
+    const templates = [
+        { dir: paths.templates.common },
+        await parseTemplate(cssFrameworks, options.cssFramework, 'css'),
+        await parseTemplate(jsFrameworks, options.jsFramework, 'js')
+    ];
 
-    const tasks = new Listr([
-        {
-            title: 'Copy common project files',
-            task: () => copy(paths.templates.common, options.targetDirectory)
-        },
-        {
-            title: 'Copy CSS framework project files',
-            task: () => copy(cssTemplateDir, options.targetDirectory),
-            skip: () => !cssTemplateDir
-        },
-        {
-            title: 'Inject CSS framework dependencies',
-            task: () => injectDependency(cssTemplate.dependencies),
-            skip: () => !cssTemplateDir
-        },
-        {
-            title: 'Initialize git',
-            task: () => git(options.targetDirectory),
-            enabled: () => options.git
-        },
-        {
-            title: 'Install dependencies',
-            task: () => projectInstall({ cwd: options.targetDirectory }),
-            skip: () => !options.runInstall ? 'Pass --install to automatically install dependencies': undefined
-        }
-    ]);
+    const dependencies = resolveDependencies(templates);
 
-    await tasks.run();
+    const queue = new Listr(tasks(options, templates, dependencies));
+    await queue.run();
+
     console.log('%s Project ready', chalk.green.bold('DONE'));
-    return true;
 }

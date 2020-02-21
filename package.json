@@ -1,6 +1,6 @@
 {
   "name": "@xcentium/xc-cli",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Command line interface to set up the XCentium Frontend seed project",
   "main": "src/cli.js",
   "bin": {
